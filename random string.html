@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
+  </head>
+<body>
+<!--content start-->
+<p class="randomNmber" style="display: none;"></p>
+<canvas id="myCanvas"></canvas>
+
+
+
+<script>
+        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        
+        function generateString(queryId, length) {
+            let result = ' ';
+            const charactersLength = characters.length;
+            for ( let i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return document.querySelector(queryId).innerHTML = result;
+        }
+
+
+         //two parameter pass first quaryID and second length of string
+        var randomString =  generateString('.randomNmber' , 5);
+        
+        //image generate for captcha
+        var c=document.getElementById("myCanvas");
+        var ctx=c.getContext("2d");
+        ctx.font="60px 'Knewave', cursive";
+        ctx.background= 'green';
+        ctx.filter= 'blur(3px)';
+        ctx.fillText(randomString,10,50);
+
+        // save img
+        Canvas2Image.saveAsImage(c, 200, 100, 'png');
+
+        </script>
+<!--content end-->
+<!-- JavaScript -->
+</body>
+</html>
